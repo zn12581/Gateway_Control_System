@@ -1,0 +1,2 @@
+add_subdirectory(filetransfer)
+add_subdirectory(commdevice)
