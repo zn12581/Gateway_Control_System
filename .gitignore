@@ -7,4 +7,4 @@ storage/
 .git/*
 .vscode/*
 *.code-workspace
-.VSCodeCounter/*
+.VSCodeCounte/*
