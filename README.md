@@ -30,6 +30,7 @@
 * 构建镜像
   
   ```
+  进入项目根目录运行：
   root& docker build -f docker/Dockerfile -t ubuntu_cpp:v2 .
   ```
 
