@@ -11,6 +11,7 @@
 #include <boost/filesystem.hpp>
 #include "safequeue.h"
 #include "logger.h"
+#include <map>
 
 using namespace utility;
 
