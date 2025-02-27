@@ -1,11 +1,3 @@
-/*
- * @Author       : liuyibo
- * @Date         : 2023-12-22 07:05:38
- * @LastEditors  : liuyibo 1299502716@qq.com
- * @LastEditTime : 2024-01-07 09:43:24
- * @FilePath     : /home/Gateway_Control_System/test/exec_management.cpp
- * @Description  : 程序执行管理，负责基础服务及应用软件的创建、关闭和维护
- */
 #include <iostream>
 #include <string>
 #include <vector>
