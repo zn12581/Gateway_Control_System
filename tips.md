@@ -42,10 +42,16 @@
       
         ErrorLog /home/Gateway_Management_System/logs/error.log
         CustomLog /home/Gateway_Management_System/logs/access.log combined
-      
+        
+        # 指定虚拟环境路径
+        WSGIDaemonProcess your_app_name python-home=/opt/venv/
+        WSGIProcessGroup your_app_name
+
         <Directory /home/Gateway_Management_System/web>
             WSGIApplicationGroup %{GLOBAL}
             Require all granted
+
+            
         </Directory>
   
     </VirtualHost>
