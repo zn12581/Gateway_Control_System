@@ -7,6 +7,7 @@
 #include "configparser.h"
 #include "event.h"
 #include "rabbitmqclient.h"
+#include "reactor.h"
 
 using namespace std;
 using namespace utility;

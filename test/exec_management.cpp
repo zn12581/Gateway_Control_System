@@ -21,7 +21,7 @@ int main()
     log_critical("Exec Management Program Start ...");
 
     /* 初始化基础服务 */
-    std::vector<std::string> basic_service = {"./init_rabbitmqserver.sh", "./init_virtualserial.sh", "./init_redis.sh", "init_apache2.sh"};
+    std::vector<std::string> basic_service = {"./init_rabbitmqserver.sh", "./init_virtualserial.sh", "./init_redis.sh", "./init_apache2.sh"};
     for(auto &script : basic_service)
     {
         int status = system(script.c_str());

@@ -16,7 +16,13 @@
 ## 启动rabbitmq-server服务
 
     root@ service rabbitmq-server restart
-
+    注意：如果device_control出现RabbitMQ建立连接时,发生未知的Response Server错误
+    请重新设置一下用户权限：
+        systemctl enable rabbitmq-server                                              \
+        rabbitmqctl add_user user 123456                                              \
+        rabbitmqctl set_user_tags user administrator                                  \
+        rabbitmqctl set_permissions -p / user ".*" ".*" ".*"                          \
+        service rabbitmq-server restart                                               \
 ## 重启apache服务
 
     root@ service apache2 restart
