@@ -29,7 +29,7 @@ int main()
     log_critical("Exec Management Program Start ...");
 
     /* 初始化基础服务 */
-    std::vector<std::string> basic_service = {"./init_rabbitmqserver.sh", "./init_virtualserial.sh", "./init_redis.sh", "./init_apache2.sh"};
+    std::vector<std::string> basic_service = {"./init_rabbitmqserver.sh", "./init_virtualserial.sh", "./init_redis.sh", "./init_apache2.sh","./init_syncthing.sh"};
     for(auto &script : basic_service)
     {
         int status = system(script.c_str());
@@ -45,7 +45,7 @@ int main()
 
     /* 加载用户应用 */
     // 创建应用
-    std::vector<std::string> user_app = {"./device_control", "./pressure_test"};
+    std::vector<std::string> user_app = {"./device_control"};//, "./pressure_test"
     std::map<pid_t, std::string> pid_list;
     for(auto &script : user_app)
     {

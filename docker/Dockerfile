@@ -76,6 +76,13 @@ RUN cd /home                                                                    
     && make                                                                          \
     && make install
 
+# 安装Syncthing文件同步环境(1.安装必要依赖 2.添加Syncthing官方仓库 3.更新软件包 4.安装Syncthing)
+RUN    apt-get install -y curl gnupg                                                                                 \  
+    && curl -s https://syncthing.net/release-key.txt | apt-key add -                                                 \  
+    && echo "deb https://apt.syncthing.net/ syncthing stable"      >        /etc/apt/sources.list.d/syncthing.list   \
+    && apt-get update \
+    && apt-get install -y syncthing                                                                                     
+
 # 构建工程目录
 RUN    cd /home                                                                      \
     && mkdir /home/Gateway_Control_System                                            \

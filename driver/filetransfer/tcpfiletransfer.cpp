@@ -193,7 +193,6 @@ TcpFileTransfer::ftret_type TcpFileTransfer::receive(str_type file_full_path, cs
         }
         ofs.flush();
         ofs.close();
-
         log_info("TcpFileTransfer({})成功接收到客户端文件({}:{} bytes)", m_server_port, file_full_path, file_size);
     }
     catch(const std::exception& e)
