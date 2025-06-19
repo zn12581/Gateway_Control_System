@@ -52,7 +52,10 @@ RUN pip install --no-cache-dir datedays==2.2.1                                  
     SQLAlchemy==1.4.22                                                               \
     redis                                                                            \
     markupsafe==1.1.1                                                                \
-    requests                                                                 
+    requests                                                                         \
+    flask_mail=0.10.0                                                                \
+    wtforms=3.2.1                                                                    \
+    email-validator=2.2.0                                                            \
 
 
 # 安装rabbitmq-server环境(TODO 开启自启动服务)

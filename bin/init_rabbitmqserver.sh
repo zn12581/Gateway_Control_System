@@ -1,2 +1,2 @@
 #!/bin/sh
-service rabbitmq-server start
+service rabbitmq-server restart

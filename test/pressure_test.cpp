@@ -42,10 +42,15 @@ int main()
     sleep(1);
 
     /* 初始化设备 */
-    DeviceEvent o101_1(1, DeviceEvent::EVENT_OPEN , 1, "", "", "");
-    DeviceEvent o100_1(1, DeviceEvent::EVENT_OPEN , 5, "", "", "");
-    p_rabbitmqclient->publish(m_exchangename_in, m_routingkey_in, o101_1.serial());
-    p_rabbitmqclient->publish(m_exchangename_in, m_routingkey_in, o100_1.serial());
+    // DeviceEvent o101_1(1, DeviceEvent::EVENT_OPEN , 1, "", "", "");
+    // DeviceEvent o100_1(1, DeviceEvent::EVENT_OPEN , 5, "", "", "");
+    DeviceEvent r206_1(1, DeviceEvent::EVENT_OPEN , 2, "", "", "");  //radio
+    DeviceEvent r205_1(1, DeviceEvent::EVENT_OPEN , 6, "", "", "");  //radio
+    
+    // p_rabbitmqclient->publish(m_exchangename_in, m_routingkey_in, o101_1.serial());
+    // p_rabbitmqclient->publish(m_exchangename_in, m_routingkey_in, o100_1.serial());
+    p_rabbitmqclient->publish(m_exchangename_in, m_routingkey_in, r206_1.serial());//radio open
+    p_rabbitmqclient->publish(m_exchangename_in, m_routingkey_in, r205_1.serial());//radio open
     // DeviceEvent r1(1, DeviceEvent::EVENT_OPEN , 2, "", "", "");
     // DeviceEvent u1(1, DeviceEvent::EVENT_OPEN , 3, "", "", "");
     // DeviceEvent s1(1, DeviceEvent::EVENT_OPEN , 4, "", "", "");
@@ -53,15 +58,19 @@ int main()
     // p_rabbitmqclient->publish(m_exchangename_in, m_routingkey_in, r1.serial());
     // p_rabbitmqclient->publish(m_exchangename_in, m_routingkey_in, u1.serial());
     // p_rabbitmqclient->publish(m_exchangename_in, m_routingkey_in, s1.serial());
-    sleep(1);
+    sleep(2);
 
     // DeviceEvent o2(2, DeviceEvent::EVENT_WRITE, 1, "/home/Gateway_Management_System/storage/upload/test.txt", "", "");
-    // DeviceEvent r2(2, DeviceEvent::EVENT_WRITE, 2, "/home/Gateway_Management_System/storage/upload//test1.txt", "", "");
     // p_rabbitmqclient->publish(m_exchangename_in, m_routingkey_in, o2.serial());
-    // p_rabbitmqclient->publish(m_exchangename_in, m_routingkey_in, r2.serial());
-    DeviceEvent o101_2(2, DeviceEvent::EVENT_WRITE, 1, "/home/Gateway_Management_System/storage/upload/test.txt", "", "");
-    p_rabbitmqclient->publish(m_exchangename_in, m_routingkey_in, o101_2.serial());
-    sleep(3);
+
+    DeviceEvent r206_2(2, DeviceEvent::EVENT_WRITE, 2, "/home/Gateway_Management_System/storage/upload/test.txt", "", "");
+    DeviceEvent r205_2(2, DeviceEvent::EVENT_WRITE, 6, "/home/Gateway_Management_System/storage/upload/test.txt", "", "");
+    p_rabbitmqclient->publish(m_exchangename_in, m_routingkey_in, r206_2.serial());//radio write
+    p_rabbitmqclient->publish(m_exchangename_in, m_routingkey_in, r205_2.serial());//radio write
+    // DeviceEvent o101_2(2, DeviceEvent::EVENT_WRITE, 1, "/home/Gateway_Management_System/storage/upload/test.txt", "", "");
+    // p_rabbitmqclient->publish(m_exchangename_in, m_routingkey_in, o101_2.serial());
+    sleep(2);
+
 
     // DeviceEvent u2(2, DeviceEvent::EVENT_WRITE, 3, "/home/Gateway_Control_System/storage/test1.txt", "", "");
     // DeviceEvent u3(3, DeviceEvent::EVENT_WRITE, 3, "/home/Gateway_Control_System/storage/test2.txt", "", "");
@@ -89,13 +98,15 @@ int main()
     // p_rabbitmqclient->publish(m_exchangename_in, m_routingkey_in, r9.serial());
     // p_rabbitmqclient->publish(m_exchangename_in, m_routingkey_in, u9.serial());
     // p_rabbitmqclient->publish(m_exchangename_in, m_routingkey_in, s9.serial());
-    DeviceEvent o101_9(9, DeviceEvent::EVENT_CLOSE , 1, "", "", "");
-    DeviceEvent o100_9(9, DeviceEvent::EVENT_CLOSE , 5, "", "", "");
-    p_rabbitmqclient->publish(m_exchangename_in, m_routingkey_in, o101_9.serial());
-    p_rabbitmqclient->publish(m_exchangename_in, m_routingkey_in, o100_9.serial());
+
+
+    // DeviceEvent o101_9(9, DeviceEvent::EVENT_CLOSE , 1, "", "", "");
+    // DeviceEvent o100_9(9, DeviceEvent::EVENT_CLOSE , 5, "", "", "");
+    // p_rabbitmqclient->publish(m_exchangename_in, m_routingkey_in, o101_9.serial());
+    // p_rabbitmqclient->publish(m_exchangename_in, m_routingkey_in, o100_9.serial());
 
     
-    sleep(1000);
+    sleep(10);
 
     /* 注销日志模块             */
     log_critical("Pressure Test Program End ...");

@@ -47,7 +47,7 @@ namespace driver
             virtual ~CommDevice() = default;
             virtual void open() = 0;
             void close();
-            inline void bindReadableEvent2Source(const callback_type &func)
+            inline void bindReadableEvent2Source(const callback_type &func)//绑定到TCP传输中，完成tcp传输后执行，通知上层应用（类似于com中断函数）
             {
                 f_serverreable_cb = func;
             }
@@ -55,7 +55,7 @@ namespace driver
             {
                 return f_open.load();
             }
-            HandleEventRetType handleEvent(DeviceEvent event);
+            HandleEventRetType handleEvent(DeviceEvent event);//用于reactor模型监听到事件，控制事件指定的设备进行工作函数。
         public:
             int             m_devid;
             std::string     m_devidentify;
