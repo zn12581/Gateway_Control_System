@@ -44,7 +44,7 @@
 
 * 配置完成，通过vscode附加到运行的容器环境
 
-* 在doker中通过systen_config文件夹55内容进一步配置
+* 在doker中通过systen_config文件夹内容进一步配置
 
 # 工程目录
 
