@@ -54,7 +54,7 @@
   -p 8800:8800 \
   -p 8801:8801 \
   -p 15672:15672 \
-  -p 19999:19999 -v /home/orangepi/Gateway_Control_System/:/home/Gateway_Control_System -v /home/orangepi/Gateway_Management_System/:/home/Gateway_Management_System --name gateway-env2 --privileged --env "TZ=Asia/Shanghai" --env "NTP_SERVERS=cn.pool.ntp.org" gateway-env-new
+  -p 19999:19999 -v /home/orangepi/Gateway_Control_System/:/home/Gateway_Control_System -v /home/orangepi/Gateway_Management_System/:/home/Gateway_Management_System --name gateway-env --privileged --env "TZ=Asia/Shanghai" --env "NTP_SERVERS=cn.pool.ntp.org" ubuntu_cpp:v2
 
   ```
 
