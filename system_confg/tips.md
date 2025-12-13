@@ -74,12 +74,12 @@
 *    至此可以通过http://server1_public_IP:8483访问华为云syncthing的gui界面
 ---------配置结束---------
 * 5. 配置syncthing,在doker和华为云中输入syncthing启动服务
-    通过http://server1_public_IP:8483访问华为云公网gui（当前公网ip为60.204.187.121）
-    通过http://127.0.0.1:8483访问doker下的本地gui
+    通过http://server1_public_IP:8384访问华为云公网gui（当前公网ip为60.204.187.121）
+    通过http://127.0.0.1::8384访问doker下的本地gui
     配置文件夹、配置远程设备，根据官方文档https://docs.syncthing.net/intro/getting-started.html
     ![alt text](image/sync2.png)
     ![alt text](image/sync3.png)
-* 6. 在gui右上角设置选项中设置gui账号密码为admin和88888888，文件夹选型中设置同步时间
+* 6. 在gui右上角设置选项中设置gui账号密码为root和88888888，文件夹选型中设置同步时间
 ![alt text](image/sync4.png)
 ![alt text](image/sync5.png)
 ## 配置Syncthing完成
