@@ -177,17 +177,18 @@ docker start gateway-env
 docker exec -it gateway-env bash
 
 3. 在容器内编辑~/.bashrc（或/etc/profile）docker默认通过bash启动 # 检查exec_management是否已运行，未运行则启动
+```bash
 echo "
 if ! pgrep -x 'exec_management' > /dev/null; then
   cd /home/Gateway_Control_System/bin && sleep 1 && ./exec_management &
 fi
 " >> ~/.bashrc
-
-4. 退出容器，重启容器生效
+```
+5. 退出容器，重启容器生效
 exit
 docker restart gateway-env
 
-5. 查看 .bashrc 末尾是否已追加命令
+6. 查看 .bashrc 末尾是否已追加命令
 cat ~/.bashrc | tail -n 2
 
 5. 检查 exec_management 是否后台运行
@@ -196,7 +197,7 @@ ps aux | grep exec_management
 
 ## 配置服务器的静态IP方便连接无线电等硬件设备（选配）
 * 1. 编辑rc.local文件（开机rk3588板会自动执行这个脚本）这部分根据服务器平台配置各有不同，enP4p65s0为网卡型号需要替换
-  
+```bash
 sudo tee /etc/rc.local > /dev/null << EOF
 \#!/bin/bash
 \# 配置enP4p65s0静态IP
@@ -206,6 +207,7 @@ route add default gw 192.168.1.1 enP4p65s0
 ifconfig enP4p65s0 up
 exit 0
 EOF
+```
 
 * 2. 添加可执行权限（关键！否则开机不执行）
 sudo chmod +x /etc/rc.local
