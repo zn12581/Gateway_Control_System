@@ -212,7 +212,19 @@ ifconfig enP4p65s0 up
 exit 0
 EOF
 ```
+```bash
+#这是一些网络设置错误恢复的方法
+# ========== 1. 强制激活双网卡（核心） ==========
+sudo ip link set enP3p49s0 up
+sudo ip link set enP4p65s0 up
 
+# ========== 2. 重新触发DHCP获取IP/网关（恢复上网） ==========
+sudo dhclient enP3p49s0  # 外网口自动获取上网参数
+sudo dhclient enP4p65s0  # 局域网口也DHCP（恢复初始状态）
+
+# ========== 3. 验证网卡状态（确认UP+有IP） ==========
+ip addr show
+```
 * 2. 添加可执行权限（关键！否则开机不执行）
 sudo chmod +x /etc/rc.local
 
