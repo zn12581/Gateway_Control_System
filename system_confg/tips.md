@@ -174,9 +174,10 @@ docker update --restart=always gateway-env
 
 2. 进入容器，配置启动脚本（确保容器启动时自动执行exec_management）
 docker start gateway-env
+
 docker exec -it gateway-env bash
 
-3. 在容器内编辑~/.bashrc（或/etc/profile）docker默认通过bash启动 # 检查exec_management是否已运行，未运行则启动
+4. 在容器内编辑~/.bashrc（或/etc/profile）docker默认通过bash启动 # 检查exec_management是否已运行，未运行则启动
 ```bash
 echo "
 if ! pgrep -x 'exec_management' > /dev/null; then
@@ -186,9 +187,10 @@ fi
 ```
 5. 退出容器，重启容器生效
 exit
+
 docker restart gateway-env
 
-6. 查看 .bashrc 末尾是否已追加命令
+7. 查看 .bashrc 末尾是否已追加命令
 cat ~/.bashrc | tail -n 2
 
 5. 检查 exec_management 是否后台运行
