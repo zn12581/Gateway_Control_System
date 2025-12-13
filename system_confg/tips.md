@@ -83,7 +83,25 @@
 * 6. 在gui右上角设置选项中设置gui账号密码为root和88888888，文件夹选型中设置同步时间
 ![alt text](image/sync4.png)
 ![alt text](image/sync5.png)
+
+1.启动并记录配置文件（仅首次有效，配置文件类似于/home/ubuntu/.local/state/syncthing/config.xml，一定要记录下来）
+syncthing  #记录配置文件目录,如果忘记记录就全局搜索sudo find / -name "config.xml" -path "*/syncthing/*" 2>/dev/null
+
+1.查询服务器A和远程设备B的id（Syncthing 唯一标识，用于设备配对）(A:CF3ELJD-TY2TRJ6-DIJLG6Y-6JWIIWS-OOXFF4E-TFFACNM-OA7FFEG-2LZ4VA4   B:)
+syncthing --device-id
+2.配置服务器
+设备A执行：备份配置(配置文件第一次运行syncthing然后可以看到，没看到要在以下路径自己找)
+cp .local/state/state/syncthingconfig.xml .local/state/state/syncthingconfig.xml.bak
+编辑配置文件（用vim/nano，推荐vim）
+vim ~/.config/syncthing/config.xml
+
+​
 ## 配置Syncthing完成
+
+
+
+
+
 
 ## 十六进制查看文件
 
