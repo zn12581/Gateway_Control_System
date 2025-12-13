@@ -80,7 +80,7 @@
   <folders>
     <!-- 原有文件夹配置（若有）保留 -->
     <!-- 新增同步文件夹：ID自定义（如gateway_sync，需和设备B一致） -->
-    <folder id="gateway_sync" label="云服务器gateway目录" path="/home/ubuntu/gateway" type="sendreceive" rescanIntervalS="30" fsWatcherEnabled="true" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
+<folder id="gateway_sync" label="云服务器gateway目录" path="/home/ubuntu/gateway" type="sendreceive" rescanIntervalS="30" fsWatcherEnabled="true" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <minDiskFree unit="%">1</minDiskFree>
         <versioning></versioning>
