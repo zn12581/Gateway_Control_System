@@ -70,36 +70,68 @@
   syncthing --device-id
   (A:CF3ELJD-TY2TRJ6-DIJLG6Y-6JWIIWS-OOXFF4E-TFFACNM-OA7FFEG-2LZ4VA4         B:UIHJDGI-Y3VR7UR-UPB5CDX-4KDALX5-CT4E7IS-NDFGOGD-BYCLKVF-QKTKAQQ)
 
-* -------4接下来可选命令行配置（比较复杂，不推荐）-----------
-    * 步骤 1：配置服务器端
-    * 1.1备份配置文件（buntu下syncthingv1.29.7默认路径是/root/.local/state/state/syncthingconfig.xml​）
-        cp .local/state/state/syncthingconfig.xml .local/state/state/syncthingconfig.xml.bak
-        编辑配置文件（用vim/nano，推荐vim）
+* -------4 命令行手动配置Syncthing（核心步骤）-----------
+    * 步骤 1：配置云服务器端（设备A）
+    * 1.1 备份配置文件（先定位配置文件，通用默认路径）
+        ```bash
+        # 先查找配置文件（必做！确认实际路径）
+        sudo find / -name "config.xml" -path "*/syncthing/*" 2>/dev/null
+        # 备份（替换为实际找到的路径）
+        cp ~/.config/syncthing/config.xml ~/.config/syncthing/config.xml.bak
+        # 编辑配置文件（推荐vim）
         vim ~/.config/syncthing/config.xml
-     * 1.2添加同步文件夹（云服务器的/home/ubuntu/gateway）
-  <folders>
-    <!-- 原有文件夹配置（若有）保留 -->
-    <!-- 新增同步文件夹：ID自定义（如gateway_sync，需和设备B一致） -->
-<folder id="gateway_sync" label="云服务器gateway目录" path="/home/ubuntu/gateway" type="sendreceive" rescanIntervalS="30" fsWatcherEnabled="true" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
-        <filesystemType>basic</filesystemType>
-        <minDiskFree unit="%">1</minDiskFree>
-        <versioning></versioning>
-        <copiers>0</copiers>
-        <pullers>0</pullers>
-        <hashers>0</hashers>
-        <order>random</order>
-        <ignoreDelete>false</ignoreDelete>
-        <scanProgressIntervalS>0</scanProgressIntervalS>
-        <pullOrder>standard</pullOrder>
-        <maxConflicts>-1</maxConflicts>
-        <disableSparseFiles>false</disableSparseFiles>
-        <disableTempIndexes>false</disableTempIndexes>
-        <paused>false</paused>
-        <weakHashThresholdPct>25</weakHashThresholdPct>
-        <markerName>.stfolder</markerName>
-    </folder>
-</folders>
-
+    * 1.2 添加同步文件夹（云服务器的 /home/ubuntu/gateway）
+        在配置文件的<folders>节点内插入以下 XML 内容：
+      ```xml
+        <folder id="gateway_sync" label="云服务器gateway目录" path="/home/ubuntu/gateway" type="sendreceive" rescanIntervalS="30" fsWatcherEnabled="true">
+            <minDiskFree unit="%">1</minDiskFree>
+            <paused>false</paused>
+            <markerName>.stfolder</markerName>
+        </folder>
+      ```
+    * 1.3 添加远程设备（Docker 远程机设备 B，替换 B_ID 为实际 ID）
+        在配置文件的<devices>节点内插入以下 XML 内容：
+      ```xml
+        <device id="B_ID" name="Docker远程机" introducedBy="">
+            <address>dynamic</address>
+            <enabled>true</enabled>
+            <syncFolders>
+                <folder id="gateway_sync"></folder>
+            </syncFolders>
+            <maxSendKbps>0</maxSendKbps>
+            <maxRecvKbps>0</maxRecvKbps>
+        </device>
+      ```
+    * 1.4 修复权限并重启 Syncthing 服务
+      ```bash
+        # 确保配置文件权限正确
+        chown -R $(whoami):$(whoami) ~/.config/syncthing/
+        chmod 600 ~/.config/syncthing/config.xml
+        # 重启服务使配置生效
+        systemctl restart syncthing@$(whoami).service
+      ```
+* 步骤 2：配置 Docker 远程机端（设备 B）参考步骤一
+* 步骤 3：验证同步效果
+    * 3.1 设备 A 创建测试文件
+    ```bash
+        touch /home/ubuntu/gateway/test_sync.txt
+        echo "Syncthing test content" > /home/ubuntu/gateway/test_sync.txt
+    ```
+    * 3.2 设备 B 验证宿主机挂载目录同步情况（等待 30 秒扫描间隔)
+    ```bash
+        cat /home/your_user/container_storage/test_sync.txt
+    ```
+    * 3.3 设备 B 验证容器内目录同步情况
+    ```bash
+        docker exec -it gateway_container cat /home/Gateway_Control_System/storage/test_sync.txt
+    ```
+    * 3.4 反向验证（设备 B 创建文件，设备 A 查看同步）
+    ```bash
+        # 设备B执行
+        echo "Reverse test content" > /home/your_user/container_storage/test_reverse.txt
+        # 设备A执行
+        cat /home/ubuntu/gateway/test_reverse.txt
+    ```
 
 * -------4或者选择GUI配置----------------
     * 4. 在云服务器和doker中输入命令：syncthing 得到一个默认设置的文件系统，ctrl^c结束程序。
