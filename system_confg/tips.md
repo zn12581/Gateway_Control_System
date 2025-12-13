@@ -97,8 +97,12 @@ docker update --restart=always gateway-env
 docker start gateway-env
 docker exec -it gateway-env bash
 
-3. 在容器内编辑~/.bashrc（或/etc/profile），追加启动命令
-echo "cd /home/Gateway_Control_System/bin &&  sleep 1 &&./exec_management &" >> ~/.bashrc
+3. 在容器内编辑~/.bashrc（或/etc/profile），追加启动命令  # 检查exec_management是否已运行，未运行则启动
+echo "
+if ! pgrep -x 'exec_management' > /dev/null; then
+  cd /home/Gateway_Control_System/bin && sleep 1 && ./exec_management &
+fi
+" >> ~/.bashrc
 
 4. 退出容器，重启容器生效
 exit
