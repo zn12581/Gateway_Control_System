@@ -74,6 +74,7 @@
 *    至此可以通过http://server1_public_IP:8483访问华为云syncthing的gui界面
 ---------配置结束---------
 * 5. 配置syncthing,在doker和华为云中输入syncthing启动服务
+     服务器启动syncthing程序sudo systemctl restart syncthing@ubuntu.service
     通过http://server1_public_IP:8384访问华为云公网gui（当前公网ip为60.204.187.121）
     通过http://127.0.0.1::8384访问doker下的本地gui
     配置文件夹、配置远程设备，根据官方文档https://docs.syncthing.net/intro/getting-started.html
