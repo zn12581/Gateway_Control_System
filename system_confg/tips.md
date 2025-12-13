@@ -90,22 +90,22 @@
 
 
 ## 部署到服务器启动自动启动配置
-# 1. 给现有容器配置开机自启
+1. 给现有容器配置开机自启
 docker update --restart=always gateway-env
 
-# 2. 进入容器，配置启动脚本（确保容器启动时自动执行exec_management）
+2. 进入容器，配置启动脚本（确保容器启动时自动执行exec_management）
 docker start gateway-env
 docker exec -it gateway-env bash
 
-# 3. 在容器内编辑~/.bashrc（或/etc/profile），追加启动命令
-echo "/home/Gateway_Control_System/bin/exec_management &" >> ~/.bashrc
+3. 在容器内编辑~/.bashrc（或/etc/profile），追加启动命令
+echo "cd /home/Gateway_Control_System/bin &&  sleep 1 &&./exec_management &" >> ~/.bashrc
 
-# 4. 退出容器，重启容器生效
+4. 退出容器，重启容器生效
 exit
 docker restart gateway-env
 
-# 5. 查看 .bashrc 末尾是否已追加命令
+5. 查看 .bashrc 末尾是否已追加命令
 cat ~/.bashrc | tail -n 2
 
-# 5. 检查 exec_management 是否后台运行
+5. 检查 exec_management 是否后台运行
 ps aux | grep exec_management
