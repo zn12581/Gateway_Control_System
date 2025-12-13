@@ -63,43 +63,43 @@
 * 1. doker中已经完成Syncthing下载，在云服务器中，根据dokerfile命令安装Syncthing。根据在终端指令记录默认配置文件config.xml​​的地址。
  
 * 2.启动并记录配置文件（仅首次有效，buntu下syncthingv1.29.7默认路径是/root/.local/state/state/syncthingconfig.xml​,可能会变一定要记录下来）
-syncthing  #记录配置文件目录,如果忘记记录就全局搜索sudo find / -name "config.xml" -path "*/syncthing/*" 2>/dev/null
+
+  syncthing  #记录配置文件目录,如果忘记记录就全局搜索sudo find / -name "config.xml" -path "*/syncthing/*" 2>/dev/null
 
 *3.查询服务器A和远程设备B的id（Syncthing 唯一标识，用于设备配对）
-syncthing --device-id
-(A:CF3ELJD-TY2TRJ6-DIJLG6Y-6JWIIWS-OOXFF4E-TFFACNM-OA7FFEG-2LZ4VA4   
-B:UIHJDGI-Y3VR7UR-UPB5CDX-4KDALX5-CT4E7IS-NDFGOGD-BYCLKVF-QKTKAQQ)
+  syncthing --device-id
+  (A:CF3ELJD-TY2TRJ6-DIJLG6Y-6JWIIWS-OOXFF4E-TFFACNM-OA7FFEG-2LZ4VA4         B:UIHJDGI-Y3VR7UR-UPB5CDX-4KDALX5-CT4E7IS-NDFGOGD-BYCLKVF-QKTKAQQ)
 
 -------4接下来可选命令行配置-----------
-2.配置服务器
-设备A执行：备份配置(配置文件第一次运行syncthing然后可以看到，没看到要在以下路径自己找)
-cp .local/state/state/syncthingconfig.xml .local/state/state/syncthingconfig.xml.bak
-编辑配置文件（用vim/nano，推荐vim）
-vim ~/.config/syncthing/config.xml
+    4.配置服务器
+    设备A执行：备份配置(配置文件第一次运行syncthing然后可以看到，没看到要在以下路径自己找)
+    cp .local/state/state/syncthingconfig.xml .local/state/state/syncthingconfig.xml.bak
+    编辑配置文件（用vim/nano，推荐vim）
+    vim ~/.config/syncthing/config.xml
 
--------4GUI配置----------------
-* 2. 在云服务器和doker中输入命令：syncthing 得到一个默认设置的文件系统，ctrl^c结束程序。
----------由于实测发现华为云远程登录访问他的web-gui界面非常不方便，通过设置开放8384端口给外部访问。---------
-* 3. 在云服务器中（华为云为例）设置防火墙：华为云在控制台-实例-设置实例安全规则，设置TCP规则将8384暴露给外部![alt text](image/sync1.png)
-* 4. 华为云服务器的Ubuntu中暴露sync的端口给外部
-*    vim /root/.local/state/state/syncthingconfig.xml
-*    修改配置文件:找到
-*    <gui enabled="true" tls="false">
-*    <address>127.0.0.1:8384</address>
-*    </gui>
-*    将127.0.0.1改为0.0.0.0
-*    至此可以通过http://server1_public_IP:8483访问华为云syncthing的gui界面
----------配置结束---------
-* 5. 配置syncthing,在doker和华为云中输入syncthing启动服务
-    服务器启动syncthing程序sudo systemctl restart syncthing@ubuntu.service
-    通过http://server1_public_IP:8384访问华为云公网gui（当前公网ip为118.25.97.132）
-    通过http://127.0.0.1::8384访问doker下的本地gui
-    配置文件夹、配置远程设备，根据官方文档https://docs.syncthing.net/intro/getting-started.html
-    ![alt text](image/sync2.png)
-    ![alt text](image/sync3.png)
-* 6. 在gui右上角设置选项中设置gui账号密码为root和88888888，文件夹选型中设置同步时间
-![alt text](image/sync4.png)
-![alt text](image/sync5.png)​
+-------4或者选择GUI配置----------------
+    * 4. 在云服务器和doker中输入命令：syncthing 得到一个默认设置的文件系统，ctrl^c结束程序。
+    ---------由于实测发现华为云远程登录访问他的web-gui界面非常不方便，通过设置开放8384端口给外部访问。---------
+    * 5. 在云服务器中（华为云为例）设置防火墙：华为云在控制台-实例-设置实例安全规则，设置TCP规则将8384暴露给外部![alt text](image/sync1.png)
+    * 6. 华为云服务器的Ubuntu中暴露sync的端口给外部
+    *    vim /root/.local/state/state/syncthingconfig.xml #这是最早记录的配置文件地址
+    *    修改配置文件:找到
+    *    <gui enabled="true" tls="false">
+    *    <address>127.0.0.1:8384</address>
+    *    </gui>
+    *    将127.0.0.1改为0.0.0.0
+    *    至此可以通过http://server1_public_IP:8483访问华为云syncthing的gui界面
+    * 5. 配置syncthing,在doker和华为云中输入syncthing启动服务
+        服务器启动syncthing程序sudo systemctl restart syncthing@ubuntu.service
+        通过http://server1_public_IP:8384访问华为云公网gui（当前公网ip为118.25.97.132）
+        通过http://127.0.0.1::8384访问doker下的本地gui
+        配置文件夹、配置远程设备，根据官方文档https://docs.syncthing.net/intro/getting-started.html
+        ![alt text](image/sync2.png)
+        ![alt text](image/sync3.png)
+    * 6. 在gui右上角设置选项中设置gui账号密码为root和88888888，文件夹选型中设置同步时间
+    ![alt text](image/sync4.png)
+    ![alt text](image/sync5.png)
+---------配置结束---------​
 ## 配置Syncthing完成
 
 
