@@ -113,9 +113,10 @@ ps aux | grep exec_management
 
 ## 配置服务器的静态IP方便连接无线电等硬件设备（选配）
 * 1. 编辑rc.local文件（开机rk3588板会自动执行这个脚本）这部分根据服务器平台配置各有不同，enP4p65s0为网卡型号需要替换
+  
 sudo tee /etc/rc.local > /dev/null << EOF
-#!/bin/bash
-# 配置enP4p65s0静态IP
+‘#!/bin/bash
+’# 配置enP4p65s0静态IP
 ifconfig enP4p65s0 down
 ifconfig enP4p65s0 192.168.1.100 netmask 255.255.255.0
 route add default gw 192.168.1.1 enP4p65s0
