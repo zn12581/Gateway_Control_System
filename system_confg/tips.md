@@ -77,31 +77,29 @@
         编辑配置文件（用vim/nano，推荐vim）
         vim ~/.config/syncthing/config.xml
      * 1.2添加同步文件夹（云服务器的/home/ubuntu/gateway）
- 
-    、、、
-          <folders>
-            <!-- 原有文件夹配置（若有）保留 -->
-            <!-- 新增同步文件夹：ID自定义（如gateway_sync，需和设备B一致） -->
-            <folder id="gateway_sync" label="云服务器gateway目录" path="/home/ubuntu/gateway" type="sendreceive" rescanIntervalS="30" fsWatcherEnabled="true" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
-                <filesystemType>basic</filesystemType>
-                <minDiskFree unit="%">1</minDiskFree>
-                <versioning></versioning>
-                <copiers>0</copiers>
-                <pullers>0</pullers>
-                <hashers>0</hashers>
-                <order>random</order>
-                <ignoreDelete>false</ignoreDelete>
-                <scanProgressIntervalS>0</scanProgressIntervalS>
-                <pullOrder>standard</pullOrder>
-                <maxConflicts>-1</maxConflicts>
-                <disableSparseFiles>false</disableSparseFiles>
-                <disableTempIndexes>false</disableTempIndexes>
-                <paused>false</paused>
-                <weakHashThresholdPct>25</weakHashThresholdPct>
-                <markerName>.stfolder</markerName>
-            </folder>
-        </folders>
-        、、、
+  <folders>
+    <!-- 原有文件夹配置（若有）保留 -->
+    <!-- 新增同步文件夹：ID自定义（如gateway_sync，需和设备B一致） -->
+    <folder id="gateway_sync" label="云服务器gateway目录" path="/home/ubuntu/gateway" type="sendreceive" rescanIntervalS="30" fsWatcherEnabled="true" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
+        <filesystemType>basic</filesystemType>
+        <minDiskFree unit="%">1</minDiskFree>
+        <versioning></versioning>
+        <copiers>0</copiers>
+        <pullers>0</pullers>
+        <hashers>0</hashers>
+        <order>random</order>
+        <ignoreDelete>false</ignoreDelete>
+        <scanProgressIntervalS>0</scanProgressIntervalS>
+        <pullOrder>standard</pullOrder>
+        <maxConflicts>-1</maxConflicts>
+        <disableSparseFiles>false</disableSparseFiles>
+        <disableTempIndexes>false</disableTempIndexes>
+        <paused>false</paused>
+        <weakHashThresholdPct>25</weakHashThresholdPct>
+        <markerName>.stfolder</markerName>
+    </folder>
+</folders>
+
 
 * -------4或者选择GUI配置----------------
     * 4. 在云服务器和doker中输入命令：syncthing 得到一个默认设置的文件系统，ctrl^c结束程序。
