@@ -68,7 +68,7 @@
 *    vim /root/.local/state/state/syncthingconfig.xml
 *    修改配置文件:找到
 *    <gui enabled="true" tls="false">
-*    <address>127.0.0.1:8483</address>
+*    <address>127.0.0.1:8384</address>
 *    </gui>
 *    将127.0.0.1改为0.0.0.0
 *    至此可以通过http://server1_public_IP:8483访问华为云syncthing的gui界面
