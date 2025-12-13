@@ -70,13 +70,38 @@
   syncthing --device-id
   (A:CF3ELJD-TY2TRJ6-DIJLG6Y-6JWIIWS-OOXFF4E-TFFACNM-OA7FFEG-2LZ4VA4         B:UIHJDGI-Y3VR7UR-UPB5CDX-4KDALX5-CT4E7IS-NDFGOGD-BYCLKVF-QKTKAQQ)
 
-* -------4接下来可选命令行配置-----------
-    * 4.配置服务器配置文件
-        设备A执行：备份配置文件)
+* -------4接下来可选命令行配置（比较复杂，不推荐）-----------
+    * 步骤 1：配置服务器端
+    * 1.1备份配置文件（buntu下syncthingv1.29.7默认路径是/root/.local/state/state/syncthingconfig.xml​）
         cp .local/state/state/syncthingconfig.xml .local/state/state/syncthingconfig.xml.bak
         编辑配置文件（用vim/nano，推荐vim）
         vim ~/.config/syncthing/config.xml
-      
+     * 1.2添加同步文件夹（云服务器的/home/ubuntu/gateway）
+ 
+    、、、
+          <folders>
+            <!-- 原有文件夹配置（若有）保留 -->
+            <!-- 新增同步文件夹：ID自定义（如gateway_sync，需和设备B一致） -->
+            <folder id="gateway_sync" label="云服务器gateway目录" path="/home/ubuntu/gateway" type="sendreceive" rescanIntervalS="30" fsWatcherEnabled="true" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
+                <filesystemType>basic</filesystemType>
+                <minDiskFree unit="%">1</minDiskFree>
+                <versioning></versioning>
+                <copiers>0</copiers>
+                <pullers>0</pullers>
+                <hashers>0</hashers>
+                <order>random</order>
+                <ignoreDelete>false</ignoreDelete>
+                <scanProgressIntervalS>0</scanProgressIntervalS>
+                <pullOrder>standard</pullOrder>
+                <maxConflicts>-1</maxConflicts>
+                <disableSparseFiles>false</disableSparseFiles>
+                <disableTempIndexes>false</disableTempIndexes>
+                <paused>false</paused>
+                <weakHashThresholdPct>25</weakHashThresholdPct>
+                <markerName>.stfolder</markerName>
+            </folder>
+        </folders>
+        、、、
 
 * -------4或者选择GUI配置----------------
     * 4. 在云服务器和doker中输入命令：syncthing 得到一个默认设置的文件系统，ctrl^c结束程序。
