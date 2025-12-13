@@ -180,9 +180,11 @@ docker exec -it gateway-env bash
 4. 在容器内编辑~/.bashrc（或/etc/profile）docker默认通过bash启动 # 检查exec_management是否已运行，未运行则启动
 ```bash
 echo "
-if ! pgrep -x 'exec_management' > /dev/null; then
-  cd /home/Gateway_Control_System/bin && sleep 1 && ./exec_management &
+# 修复：匹配带路径的进程名，避免重复启动
+if ! pgrep -f './exec_management' > /dev/null; then
+   cd /home/Gateway_Control_System/bin && sleep 1 && ./exec_management &
 fi
+" >> ~/.bashrc
 " >> ~/.bashrc
 ```
 5. 退出容器，重启容器生效
