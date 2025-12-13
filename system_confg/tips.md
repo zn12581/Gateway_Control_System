@@ -60,24 +60,25 @@
 * 重启apache服务 root@ service apache2 restart
 
 ## 配置Syncthing文件同步功能
-* 1. doker中已经完成Syncthing下载，在云服务器中，根据dokerfile命令安装Syncthing。根据在终端指令记录默认配置文件config.xml​​的地址。
+* 1.doker中已经完成Syncthing下载，在云服务器中，根据dokerfile命令安装Syncthing。根据在终端指令记录默认配置文件config.xml​​的地址。
  
 * 2.启动并记录配置文件（仅首次有效，buntu下syncthingv1.29.7默认路径是/root/.local/state/state/syncthingconfig.xml​,可能会变一定要记录下来）
 
   syncthing  #记录配置文件目录,如果忘记记录就全局搜索sudo find / -name "config.xml" -path "*/syncthing/*" 2>/dev/null
 
-*3.查询服务器A和远程设备B的id（Syncthing 唯一标识，用于设备配对）
+* 3.查询服务器A和远程设备B的id（Syncthing 唯一标识，用于设备配对）
   syncthing --device-id
   (A:CF3ELJD-TY2TRJ6-DIJLG6Y-6JWIIWS-OOXFF4E-TFFACNM-OA7FFEG-2LZ4VA4         B:UIHJDGI-Y3VR7UR-UPB5CDX-4KDALX5-CT4E7IS-NDFGOGD-BYCLKVF-QKTKAQQ)
 
--------4接下来可选命令行配置-----------
-    4.配置服务器
-    设备A执行：备份配置(配置文件第一次运行syncthing然后可以看到，没看到要在以下路径自己找)
-    cp .local/state/state/syncthingconfig.xml .local/state/state/syncthingconfig.xml.bak
-    编辑配置文件（用vim/nano，推荐vim）
-    vim ~/.config/syncthing/config.xml
+* -------4接下来可选命令行配置-----------
+    * 4.配置服务器配置文件
+        设备A执行：备份配置文件)
+        cp .local/state/state/syncthingconfig.xml .local/state/state/syncthingconfig.xml.bak
+        编辑配置文件（用vim/nano，推荐vim）
+        vim ~/.config/syncthing/config.xml
+      
 
--------4或者选择GUI配置----------------
+* -------4或者选择GUI配置----------------
     * 4. 在云服务器和doker中输入命令：syncthing 得到一个默认设置的文件系统，ctrl^c结束程序。
     ---------由于实测发现华为云远程登录访问他的web-gui界面非常不方便，通过设置开放8384端口给外部访问。---------
     * 5. 在云服务器中（华为云为例）设置防火墙：华为云在控制台-实例-设置实例安全规则，设置TCP规则将8384暴露给外部![alt text](image/sync1.png)
