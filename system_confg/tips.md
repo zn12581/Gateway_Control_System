@@ -60,15 +60,18 @@
 * 重启apache服务 root@ service apache2 restart
 
 ## 配置Syncthing文件同步功能
-* 1.doker中已经完成Syncthing下载，在云服务器中，根据dokerfile命令安装Syncthing。根据在终端指令记录默认配置文件config.xml​​的地址。
+* 1.doker中已经完成Syncthing下载，在云服务器中，根据dokerfile命令安装Syncthing。
+* 启动服务：syncthing
  
-* 2.启动并记录配置文件（仅首次有效，buntu下syncthingv1.29.7默认路径是/root/.local/state/state/syncthingconfig.xml​,可能会变一定要记录下来）
+* 2.修改配置文件/root/.local/state/syncthing/config.xm（默认路径是/root/.local/state/state/syncthingconfig.xml​,如果忘记记录就全局搜索sudo find / -name "config.xml" -path "*/syncthing/*" 2>/dev/null）
+* 修改  <address>127.0.0.1:8384</address>
+* 改为 <address>0.0.0.1:8384</address>
 
-  syncthing  #记录配置文件目录,如果忘记记录就全局搜索sudo find / -name "config.xml" -path "*/syncthing/*" 2>/dev/null
-
-* 3.查询服务器A和远程设备B的id（Syncthing 唯一标识，用于设备配对）
+* 3.查询服务器A和远程设备B的的device id（Syncthing 唯一标识，用于设备配对）
   syncthing --device-id
   (A:CF3ELJD-TY2TRJ6-DIJLG6Y-6JWIIWS-OOXFF4E-TFFACNM-OA7FFEG-2LZ4VA4         B:UIHJDGI-Y3VR7UR-UPB5CDX-4KDALX5-CT4E7IS-NDFGOGD-BYCLKVF-QKTKAQQ)
+  
+* 4配置Syncthing，建议条转到GUI配置
 
 * -------4 命令行手动配置Syncthing（核心步骤）-----------
     * 步骤 1：配置云服务器端（设备A）
