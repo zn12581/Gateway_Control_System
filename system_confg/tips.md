@@ -152,7 +152,7 @@
         配置文件夹、配置远程设备，根据官方文档https://docs.syncthing.net/intro/getting-started.html
         ![alt text](image/sync2.png)
         ![alt text](image/sync3.png)
-    * 6. 在gui右上角设置选项中设置gui账号密码为root和88888888，文件夹选型中设置同步时间
+    * 6. 在gui右上角设置选项中设置gui账号密码为root和********，文件夹选型中设置同步时间
     ![alt text](image/sync4.png)
     ![alt text](image/sync5.png)
 ---------配置结束---------​
