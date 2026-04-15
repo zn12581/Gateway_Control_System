@@ -179,7 +179,6 @@ if ! pgrep -f './exec_management' > /dev/null; then
    cd /home/Gateway_Control_System/bin && sleep 1 && ./exec_management &
 fi
 " >> ~/.bashrc
-" >> ~/.bashrc
 ```
 5. 退出容器，重启容器生效
 exit
