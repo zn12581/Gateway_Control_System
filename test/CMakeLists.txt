@@ -17,8 +17,8 @@ target_link_libraries(device_control systime logger configparser reactor event f
 add_executable(pressure_test pressure_test.cpp)
 target_link_libraries(pressure_test systime logger configparser reactor event rabbitmqclient)
 
-add_executable(cloud_server cloud_server.cpp)
-target_link_libraries(cloud_server systime logger configparser reactor event rabbitmqclient)
+#add_executable(cloud_server cloud_server.cpp)
+#target_link_libraries(cloud_server systime logger configparser reactor event rabbitmqclient)
 
 
 
