@@ -63,7 +63,7 @@
 * 1.doker中已经完成Syncthing下载，在云服务器中，根据dokerfile命令安装Syncthing。
 * 启动服务：syncthing
  
-* 2.修改配置文件/root/.local/state/syncthing/config.xm（默认路径是/root/.local/state/state/syncthingconfig.xml​,如果忘记记录就全局搜索sudo find / -name "config.xml" -path "*/syncthing/*" 2>/dev/null）
+* 2.修改配置文件/root/.local/state/syncthing/config.xml（默认路径是/root/.local/state/state/syncthingconfig.xml​,如果忘记记录就全局搜索sudo find / -name "config.xml" -path "*/syncthing/*" 2>/dev/null）
 * 修改  <address>127.0.0.1:8384</address>
 * 改为 <address>0.0.0.1:8384</address>
 
